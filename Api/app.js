@@ -3,10 +3,10 @@ require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const app = express();
 
 
 /******************Setup******************/
-const app = express();
 app.use(bodyParser.urlencoded({extended: true}));
 mongoose.connect("mongodb://localhost:27017/handyDB", {useNewUrlParser: true});
 mongoose.pluralize(null);
@@ -44,7 +44,7 @@ app.route("/notes")
         if (err) {
             res.send(err); //Client side will need to handle errors
         } else {
-            res.send(docs); //Client side receives a list of js objects
+            res.json(docs); //Client side receives a list of js objects
         }
     })
 })
@@ -58,7 +58,7 @@ app.route("/notes")
         if (err) {
             res.send(err);
         } else {
-            res.send(updatedDoc); // Will be used to reference the object in React
+            res.json(updatedDoc); // Will be used to reference the object in React
         }
     });
 })
@@ -67,7 +67,7 @@ app.route("/notes")
         if (err) {
             res.send(err);
         } else {
-            res.send(updatedDoc);
+            res.json(updatedDoc);
         }
     });
 });
@@ -79,7 +79,7 @@ app.route("/checklists")
         if (err) {
             res.send(err);
         } else {
-            res.send(docs);
+            res.json(docs);
         }
     });
 })
@@ -103,7 +103,7 @@ app.route("/checklists")
                 if (err) {
                     res.send(err);
                 } else {
-                    res.send(updatedDoc); // And returns the whole checklist 
+                    res.json(updatedDoc); // And returns the whole checklist 
                 }
             });
         }
@@ -119,7 +119,7 @@ app.route("/checklists")
                 if (err) {
                     res.send(err);
                 } else {
-                    res.send(updatedDoc);
+                    res.json(updatedDoc);
                 }
             });
         }
