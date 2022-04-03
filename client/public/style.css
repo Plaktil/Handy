@@ -1,0 +1,46 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+body {
+    text-align: center;
+    background-color: rgb(246, 235, 226);
+}
+
+.nav-custom {
+    padding: 0;
+}
+
+.navbar-global {
+    background-color: rgb(69, 139, 131);
+}
+
+.navbar-title {
+    font-family: 'Lobster Two', cursive;
+    font-size: 3em;
+    color: rgb(28, 30, 31);
+    padding-right: 100px;
+}
+
+.navbar-item {
+    font-family: 'Roboto', sans-serif;
+    float: right;
+    width: 150px;
+    font-size: 1.25em;
+    border-color: rgb(149, 210, 203);
+    border-style: dashed;
+    border-width: 2px;
+    border-radius: 12px;
+    margin: 3px 10px;
+    color: rgb(28, 30, 31);
+}
+
+.navbar-item:hover {
+    background-color: rgb(149, 210, 203);
+}
+
+.navbar-item:focus {
+    background-color: rgb(149, 210, 203);
+}

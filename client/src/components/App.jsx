@@ -1,4 +1,5 @@
 import React from "react";
+import Header from "./Header";
 
 function App() {
   const [notes, setNotes] = React.useState([{}])
@@ -10,10 +11,7 @@ function App() {
   }, []);
 
   return (
-    <div>
-    <p>{notes[0].title}</p>
-    <p>{notes[0].content}</p>
-    </div>
+    <Header />
   )
 };
 
