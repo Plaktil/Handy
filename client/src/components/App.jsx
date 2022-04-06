@@ -1,5 +1,7 @@
 import React from "react";
-import Header from "./Header";
+import Navbar from "./Navbar";
+
+const tools = ["Checklists", "Notes", "Calender", "Alarms"];
 
 function App() {
   const [notes, setNotes] = React.useState([{}])
@@ -11,7 +13,7 @@ function App() {
   }, []);
 
   return (
-    <Header />
+    <Navbar menuItems={tools}/>
   )
 };
 

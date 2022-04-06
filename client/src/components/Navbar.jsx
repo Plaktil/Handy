@@ -1,6 +1,6 @@
 import React from "react";
 
-function Header() {
+function Navbar(props) {
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light nav-custom">
             <div className="container-fluid navbar-global">
@@ -29,4 +29,4 @@ function Header() {
     )
 }
 
-export default Header;
+export default Navbar;
