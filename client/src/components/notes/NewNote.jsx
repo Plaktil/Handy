@@ -14,9 +14,10 @@ function NewNote(props) {
   }
 
   function submitNote(event) {
-    props.addNote(currentNote);
-    console.log(currentNote);
-    setCurrentNote({title:"", content:""});
+    if (currentNote.title !== "" && currentNote.content !== "") {
+      props.addNote(currentNote)
+      setCurrentNote({title:"", content:""});
+    }
     event.preventDefault();
   }
 

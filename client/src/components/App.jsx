@@ -19,19 +19,17 @@ function App() {
   function addNote(newNote) {
     const requestOptions = {
       method: "POST",
+      mode: "cors",
       headers: {
         "Accept": "application/json",
         "Content-Type" : "application/json"
       },
-      body: JSON.stringify({title:"hey", content: "wassup"})
+      body: JSON.stringify({"title": newNote.title, "content": newNote.content})
     }
 
     fetch("/notes", requestOptions)
     .then(response => response.json())
-    .then(data => {
-      console.log(data);
-      setNotes(data)
-    })
+    .then(data => console.log(data))
   };
 
   function deleteNote(id) {
@@ -49,9 +47,9 @@ function App() {
     .then(response => response.json())
     .then(data => setChecklists(data));
 
-    fetch("/calendar")
-    .then(response => response.json())
-    .then(data => setCalendar(data));
+    // fetch("/calendar")
+    // .then(response => response.json())
+    // .then(data => setCalendar(data));
   }, []);
 
   return (

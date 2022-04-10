@@ -8,6 +8,7 @@ const app = express();
 
 /******************Setup******************/
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 mongoose.connect("mongodb://localhost:27017/handyDB", {useNewUrlParser: true});
 mongoose.pluralize(null);
 
@@ -53,8 +54,6 @@ app.route("/notes")
         title: req.body.title,
         content: req.body.content
     });
-
-    console.log(req);
 
     newNote.save(function(err, updatedDoc) {
         if (err) {
