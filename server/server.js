@@ -54,6 +54,8 @@ app.route("/notes")
         content: req.body.content
     });
 
+    console.log(req);
+
     newNote.save(function(err, updatedDoc) {
         if (err) {
             res.send(err);

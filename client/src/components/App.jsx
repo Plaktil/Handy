@@ -2,26 +2,37 @@ import React, {useEffect, useState} from "react";
 import {
   BrowserRouter as Router,
   Routes,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 import Navbar from "./Navbar";
-import Notes from "./Notes"
+import Notes from "./notes/Notes"
 import Checklists from "./Checklists";
 import Calendar from "./Calendar";
 
 const tools = ["Checklists", "Notes", "Calender", "Alarms"];
 
 function App() {
-  // const [notes, setNotes] = useState([{}]);
+  const [notes, setNotes] = useState([{}]);
   const [checklists, setChecklists] = useState([{}]);
   const [calendar, setCalendar] = useState([{}]);
 
-  const [notes, setNotes] = useState([])
-
   function addNote(newNote) {
-    setNotes(prevNotes => [...prevNotes, newNote]);
-  }
+    const requestOptions = {
+      method: "POST",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type" : "application/json"
+      },
+      body: JSON.stringify({title:"hey", content: "wassup"})
+    }
+
+    fetch("/notes", requestOptions)
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+      setNotes(data)
+    })
+  };
 
   function deleteNote(id) {
     setNotes((prevNotes => {
@@ -29,10 +40,10 @@ function App() {
     }));
   }
 
-  useEffect(() => {
-    // fetch("/notes")
-    // .then(response => response.json())
-    // .then(data => setNotes(data));
+  useEffect(() => { // For now, gets the data needed
+    fetch("/notes")
+    .then(response => response.json())
+    .then(data => setNotes(data));
 
     fetch("/checklists")
     .then(response => response.json())
