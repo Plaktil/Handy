@@ -15,25 +15,27 @@ body {
 
 .navbar-global {
     background-color: rgb(69, 139, 131);
+    height: auto;
 }
 
 .navbar-title {
     font-family: 'Lobster Two', cursive;
     font-size: 3em;
     color: rgb(28, 30, 31);
-    padding-right: 100px;
+    padding: 0 15% 0 5%;
+    height: 50px;
 }
 
 .navbar-item {
     font-family: 'Roboto', sans-serif;
     float: right;
-    width: 200px;
+    width: 175px;
     font-size: 1.25em;
     border-color: rgb(149, 210, 203);
     border-style: dashed;
     border-width: 2px;
     border-radius: 12px;
-    margin: 3px 10px;
+    margin: 3px 0 3px 30px;
     color: rgb(28, 30, 31);
 }
 
@@ -47,4 +49,44 @@ body {
 }
 .navbar-item:active {
     color:rgb(98, 104, 107);
+}
+
+.notes-container {
+    margin: 0 10px;
+}
+
+.note-layout {
+    margin-top: 35px;
+}
+
+.note-single {
+    width: 350px;
+    border-width: 5px;
+    border-radius: 30px;
+    background-color: rgba(198, 252, 245, 0.405);
+}
+
+#custom-css .note-header {
+    font-family: 'Lobster Two', cursive;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+}
+
+#custom-css .note-body {
+    font-family: 'Roboto', sans-serif;
+}
+
+#custom-css .note-footer {
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+
+#custom-css .note-delete-btn {
+    border-radius: 30px;
+    background-color: rgb(149, 210, 203);
+}
+
+.note-delete-icon {
+    width: 20px;
+    height: 30px;
 }

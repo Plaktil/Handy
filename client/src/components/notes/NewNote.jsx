@@ -22,7 +22,7 @@ function NewNote(props) {
   }
 
   return (
-    <div>
+    <div className="new-notes">
       <form>
         <input value={currentNote.title} onChange={handleTextInput} name="title" placeholder="Title" />
         <textarea value={currentNote.content} onChange={handleTextInput} name="content" placeholder="Take a note..." rows="3" />
