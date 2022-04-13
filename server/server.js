@@ -59,7 +59,7 @@ app.route("/notes")
         if (err) {
             res.send(err);
         } else {
-            res.json(updatedDoc); // Will be used to reference the object in React
+            res.json(updatedDoc); // _id will be used to reference the object in React
         }
     });
 })

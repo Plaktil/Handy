@@ -7,7 +7,11 @@ function Notes() {
   /*************** Hooks ***************/
   const [notes, setNotes] = useState([{"title": "", "content": ""}]);
 
-  useEffect(() => {
+  /*
+  Ensures anyone viewing the same page will get the notes updated
+  whenever someone else adds a note.
+  */
+  useEffect(() => { 
     fetch("/notes")
     .then(response => response.json())
     .then(data => setNotes(data));
@@ -27,8 +31,8 @@ function Notes() {
     }
 
     fetch("/notes", requestOptions)
-    .then(response => response.json())
-    .then(data => setNotes((prevNotes) => [...prevNotes, data]))
+    .then(response => response.json()) /* API sends back the new document */
+    .then(data => setNotes((prevNotes) => [...prevNotes, data])) /* And we trigger the hook by adding it to our state */
   };
 
   function deleteNote(noteId) {
@@ -43,9 +47,9 @@ function Notes() {
     }
 
     fetch("/notes", requestOptions)
-    .then(response => response.json())
+    .then(response => response.json()) /* API sends back the deleted document */
     .then(data => setNotes(prevNotes => {
-      return prevNotes.filter((item) => item._id !== data._id)
+      return prevNotes.filter((item) => item._id !== data._id) /* And we trigger the hook by removing it from our state */
     }))
   };
 
@@ -63,7 +67,7 @@ function Notes() {
                 key={index}
                 id={item._id}
                 title={item.title}
-                content={item.content.length > 100 ? item.content.substring(0, 100) + "..." : item.content}
+                content={item.content}
                 deleteNote={deleteNote}
               />
             )

@@ -10,13 +10,18 @@ import Checklists from "./Checklists";
 import Calendar from "./Calendar";
 import Alarms from "./Alarms";
 
+/* This is for the Navbar to render the available pages as links */
 const menuItems = ["checklists", "notes", "calendar", "alarms"];
 
 function App() {
   
+  /*************** Hooks ***************/
+  /* Those will be moved to their respective files once they are implemented */
   const [checklists, setChecklists] = useState([{}]);
   const [calendar, setCalendar] = useState([{}]);
   const [alarms, setalarms] = useState([{}]);
+
+  /* These are only there for reference */
 
   //   useEffect(() => { // For now, gets the data needed
   //   fetch("/notes")
@@ -37,13 +42,13 @@ function App() {
   // }, []);
 
   
-
+/*************** Element Body ***************/
   return (
     <div id="custom-css">
       <Router>
         <Navbar menuItems={menuItems}/>
-        {/* These should not be considered as different pages, only different views of the same page.*/}
         <Routes>
+          {/* Once implemented, the landing page should show the latest items added to the app */}
           <Route path="/" element={<h1>Welcome to the Handy App.</h1>} />
           <Route path="/notes" element={<Notes/>} />
           <Route path="/checklists" element={<Checklists data={checklists} />} />

@@ -59,11 +59,20 @@ body {
     margin-top: 35px;
 }
 
-.note-single {
+.note-single, .new-note {
     width: 350px;
     border-width: 5px;
     border-radius: 30px;
     background-color: rgba(198, 252, 245, 0.405);
+}
+
+.new-note {
+    width: fit-content;
+}
+
+.new-note-title, .new-note-content {
+    text-align: center;
+    width: 300px;
 }
 
 #custom-css .note-header {
@@ -81,12 +90,12 @@ body {
     border-bottom-right-radius: 30px;
 }
 
-#custom-css .note-delete-btn {
+#custom-css .note-delete-btn, .note-add-btn {
     border-radius: 30px;
     background-color: rgb(149, 210, 203);
 }
 
-.note-delete-icon {
+.note-delete-icon, .note-add-icon {
     width: 20px;
     height: 30px;
 }
