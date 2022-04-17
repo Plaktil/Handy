@@ -15,7 +15,7 @@ function Notes() {
     fetch("/notes")
     .then(response => response.json())
     .then(data => setNotes(data));
-  }, [notes]);
+  }, []);
   
 
   /*************** Add/Delete functions ***************/

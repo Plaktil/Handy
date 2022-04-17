@@ -34,7 +34,7 @@ function NewNote(props) {
             <div className="card new-note">
               <div className="card-header note-header">
                 <h1>
-                  <input /* With inputs styled like the other Notes */
+                  <input autoFocus="true" /* With inputs styled like the other Notes */
                     className="new-note-title"
                     value={currentNote.title} 
                     onChange={handleTextInput} 

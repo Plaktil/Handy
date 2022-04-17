@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import Navbar from "./Navbar";
 import Notes from "./notes/Notes"
-import Checklists from "./Checklists";
+import Checklists from "./checklists/Checklists";
 import Calendar from "./Calendar";
 import Alarms from "./Alarms";
 
@@ -15,9 +15,10 @@ const menuItems = ["checklists", "notes", "calendar", "alarms"];
 
 function App() {
   
+  
   /*************** Hooks ***************/
   /* Those will be moved to their respective files once they are implemented */
-  const [checklists, setChecklists] = useState([{}]);
+  
   const [calendar, setCalendar] = useState([{}]);
   const [alarms, setalarms] = useState([{}]);
 
@@ -50,8 +51,9 @@ function App() {
         <Routes>
           {/* Once implemented, the landing page should show the latest items added to the app */}
           <Route path="/" element={<h1>Welcome to the Handy App.</h1>} />
+          {/* Those should be generated from the menuItems array once they are all implemented */}
           <Route path="/notes" element={<Notes/>} />
-          <Route path="/checklists" element={<Checklists data={checklists} />} />
+          <Route path="/checklists" element={<Checklists/>} />
           <Route path="/calendar" element={<Calendar data={calendar} />} />
           <Route path="/alarms" element={<Alarms data={alarms} />} />
         </Routes>

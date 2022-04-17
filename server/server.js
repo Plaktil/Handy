@@ -22,7 +22,8 @@ const noteSchema = {
 const Note = mongoose.model("Notes", noteSchema);
 
 const itemSchema = {
-    content: String
+    content: String,
+    checked: Boolean
 };
 
 const Item = mongoose.model("Items", itemSchema);
@@ -38,6 +39,9 @@ const Checklist = mongoose.model("Checklists", checklistSchema);
 // needs .env, sessions, passport, passport-local, passport-local-mongoose
 
 /******************Routing******************/
+
+// TODO: Add confirmation codes to each of the responses so that the client may handle a bad request
+// appropriately.
 
 app.route("/notes")
 .get(function(req, res) {
@@ -73,7 +77,8 @@ app.route("/notes")
     });
 });
 
-
+// Acts on the items of checklists rather than on the checklists themselves. Although, it will create
+// a new checklist if an item is added to a non-existing checklist.
 app.route("/checklists")
 .get((req, res) => {
     Checklist.find({}, (err, docs) => {
@@ -96,7 +101,8 @@ app.route("/checklists")
                 });
             }
             const newItem = new Item({
-                content: req.body.content
+                content: req.body.content,
+                checked: req.body.checked
             });
 
             doc.items.push(newItem); // This either updates the found doc or inserts the newly created doc.
@@ -110,17 +116,23 @@ app.route("/checklists")
         }
     });
 })
+// .patch((req, res) => {
+    /*
+        Will mainly be used to set the "checked property" on checklist items.
+        Should not return anything but a confirmation.
+    */
+// })
 .delete((req, res) => {
     Checklist.findById(req.body.listId, function(err, doc) {
         if (err) {
             res.send(err);
         } else {
-            doc.items.pull(req.body.itemId) // Might need to implement automatic cleanup of empty checklists.
-            doc.save(function(err, updatedDoc) { // Or maybe leave it to the user to delete their lists.
+            doc.items.pull(req.body.itemId) // Remove the list Item
+            doc.save(function(err, updatedDoc) {
                 if (err) {
                     res.send(err);
                 } else {
-                    res.json(updatedDoc);
+                    res.json(updatedDoc); // Return the updated checklist
                 }
             });
         }
