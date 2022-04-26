@@ -38,6 +38,8 @@ const Checklist = mongoose.model("Checklists", checklistSchema);
 //TODO: Add users to the mix. Each user needs to authenticate in order to access their own checklists and notes.
 // needs .env, sessions, passport, passport-local, passport-local-mongoose
 
+//TODO: Check into how to structure the server side into seperate files to improve readability.
+
 /******************Routing******************/
 
 // TODO: Add confirmation codes to each of the responses so that the client may handle a bad request
@@ -116,28 +118,40 @@ app.route("/checklists")
         }
     });
 })
+
 // .patch((req, res) => {
     /*
         Will mainly be used to set the "checked property" on checklist items.
         Should not return anything but a confirmation.
     */
 // })
+
 .delete((req, res) => {
-    Checklist.findById(req.body.listId, function(err, doc) {
+    Checklist.findByIdAndRemove(req.body.id, function(err, deletedDoc) {
         if (err) {
             res.send(err);
         } else {
-            doc.items.pull(req.body.itemId) // Remove the list Item
-            doc.save(function(err, updatedDoc) {
-                if (err) {
-                    res.send(err);
-                } else {
-                    res.json(updatedDoc); // Return the updated checklist
-                }
-            });
+            res.json(deletedDoc);
         }
     });
 });
+
+// .delete((req, res) => {
+//     Checklist.findById(req.body.listId, function(err, doc) {
+//         if (err) {
+//             res.send(err);
+//         } else {
+//             doc.items.pull(req.body.itemId) // Remove the list Item
+//             doc.save(function(err, updatedDoc) {
+//                 if (err) {
+//                     res.send(err);
+//                 } else {
+//                     res.json(updatedDoc); // Return the updated checklist
+//                 }
+//             });
+//         }
+//     });
+// });
 
 // TODO: Implement parameters in routes for individual checklists.
 

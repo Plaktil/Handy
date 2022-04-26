@@ -9,6 +9,7 @@ body {
     background-color: rgb(246, 235, 226);
 }
 
+/**************** Navbar ****************/
 .nav-custom {
     padding: 0;
 }
@@ -51,6 +52,9 @@ body {
     color:rgb(98, 104, 107);
 }
 
+
+/**************** Notes ****************/
+/* Will need to change some class names as they apply to Checklists as well */
 .notes-container {
     margin: 0 10px;
 }
@@ -90,9 +94,14 @@ body {
     border-bottom-right-radius: 30px;
 }
 
-#custom-css .note-delete-btn, .note-add-btn {
+.note-delete-btn {
     border-radius: 30px;
-    background-color: rgb(149, 210, 203);
+    background-color: rgb(235, 109, 81);
+}
+
+.note-add-btn {
+    border-radius: 30px;
+    background-color: rgba(69, 139, 131, 0.66);
 }
 
 .note-delete-icon, .note-add-icon {
@@ -101,4 +110,25 @@ body {
 }
 
 
+/**************** Checklists ****************/
+.checklist-item {
+    margin-bottom: 0;
+    height: 50px;
+    padding-top: 13px;
+    font-size: 1.15em;
+}
+
+.checklist-item-check-icon {
+    width: 20px;
+    height: 20px;
+    background-color: rgba(69, 139, 131, 0.66);
+    border-radius: 10px;
+}
+
+.checklist-item-delete-icon {
+    width: 20px;
+    height: 20px;
+    background-color: rgb(204, 140, 126);
+    border-radius: 10px;
+}
 /* TODO: Style checklists icons */

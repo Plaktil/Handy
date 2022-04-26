@@ -1,11 +1,19 @@
 import React, {useState} from "react";
 
+/*
+  At some point, I want the user to be able to modify each checklist item individually by 
+  clicking the item. This will require to make calls to the db efter the user focus leaves the field to update
+  the field, or to set up a update call only when the user browses away from the page.
+  
+  Since I intend on using the app simultaneously with someone else, I would rather implement the former.
+*/
+
 function ChecklistItem(props) {
 
   const [isChecked, setIsChecked] = useState(props.checked);
 
   function handleDelete(event) {
-    props.deleteChecklistItem(props._id);
+    props.deleteChecklistItem(props.id);
     event.preventDefault();
   }
 
@@ -16,11 +24,14 @@ function ChecklistItem(props) {
   }
 
     return (
-      <div>
-        <button className="btn checklist-item-check-btn" onClick={handleCheck}>
+      <div className="row ">
+        <button className="col-2 btn checklist-item-check-btn" onClick={handleCheck}>
           <img src={isChecked ? "check-circle-fill.svg" : "check-circle.svg"} alt="check icon" className="checklist-item-check-icon"/>
         </button>
-        <p style={isChecked ? {"textDecoration" : "line-through"} : {}} key={props._id}>{props.content}</p>
+        <p className="col checklist-item" style={isChecked ? {"textDecoration" : "line-through", "textDecorationColor": "black", "color": "rgb(204, 140, 126)"} : {}} key={props.id}>{props.content}</p>
+        <button className="col-2 btn checklist-item-check-btn" onClick={handleCheck}>
+          <img src="x-circle.svg" alt="check icon" className="checklist-item-delete-icon"/>
+        </button>
       </div>
     )
 

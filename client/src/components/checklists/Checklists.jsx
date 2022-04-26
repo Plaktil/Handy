@@ -56,18 +56,18 @@ function Checklists() {
   };
 
 
-  function deleteChecklistItem(checklistItemid) {
+  function deleteChecklistItem(checklistId, checklistItemid) {
     const requestOptions = {
-      method: "DELETE",
+      method: "PATCH",
       mode: "cors",
       headers: {
         "Accept": "application/json",
         "Content-Type" : "application/json"
       },
-      body: JSON.stringify({"id": checklistItemid})
+      body: JSON.stringify({"checklistId": checklistId, "itemId": checklistItemid})
     }
 
-    fetch("/notes", requestOptions)
+    fetch("/checklists", requestOptions)
     .then(response => response.json()) /* API sends back the deleted document */
     .then(data => setChecklists((prevChecklists) => {
 
@@ -84,27 +84,44 @@ function Checklists() {
     }))
   }
 
+  function deleteChecklist(checklistId) {
+    const requestOptions = {
+      method: "DELETE",
+      mode: "cors",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type" : "application/json"
+      },
+      body: JSON.stringify({"id": checklistId})
+    }
+
+    fetch("/checklists", requestOptions)
+    .then(response => response.json())
+    .then(data => setChecklists(prevChecklists => {
+      let newChecklists = prevChecklists.filter(item => item._id !== data._id);
+      return newChecklists;
+    }));
+  }
+
 
   /*************** Element Body ***************/
   return (
     <div>
-      {/* <div>
-        <NewNote addNote={addNote} />
-      </div> */}
-        <div className="row notes-container">
-          {checklists.map((list, index) => {
-            return (
-              <Checklist 
-                key={index}
-                id={list._id}
-                title={list.title}
-                items={list.items}
-                addChecklistItem={addChecklistItem}
-                deleteChecklistItem={deleteChecklistItem}
-              />
-            )
-          })}
-        </div>      
+      <div className="row notes-container">
+        {checklists.map((list, index) => {
+          return (
+            <Checklist 
+              key={index}
+              id={list._id}
+              title={list.title}
+              items={list.items}
+              deleteChecklist={deleteChecklist}
+              addChecklistItem={addChecklistItem}
+              deleteChecklistItem={deleteChecklistItem}
+            />
+          )
+        })}
+      </div>      
     </div>
   )
 }
